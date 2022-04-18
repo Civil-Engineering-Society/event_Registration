@@ -84,7 +84,8 @@
         <div class="row">
           <div class="col-lg-6">
             <h2>About The Event</h2>
-            <p>The is organised by civil engineering society of st.Joseph's college of engineering and Technology, Palai.The detials will update soon </p>
+            <p>The is organised by civil engineering society of st.Joseph's college of engineering and Technology,
+              Palai.The detials will update soon </p>
           </div>
           <div class="col-lg-3">
             <h3>Venue</h3>
@@ -250,16 +251,16 @@
         <div class="form">
           <div id="sendmessage">Your message has been sent. Thank you!</div>
           <div id="errormessage"></div>
-          <form name="MyForm" action="mailto: jerinjacob0481@gmail.com" method="post">
+          <form name="MyForm" action="">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                  data-rule="minlen:4" data-msg="Please enter at least 4 chars" required/>
+                  data-rule="minlen:4" data-msg="Please enter at least 4 chars" required />
                 <div class="validation"></div>
               </div>
               <div class="form-group col-md-6">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
-                  data-rule="email" data-msg="Please enter a valid email" required/>
+                  data-rule="email" data-msg="Please enter a valid email" required />
                 <div class="validation"></div>
               </div>
             </div>
@@ -268,7 +269,7 @@
                 data-msg="Please write something for us" placeholder="Message"></textarea>
               <div class="validation"></div>
             </div>
-            <div class="text-center"><button type="submit" onclick="validate()">Send Message</button></div>
+            <div class="text-center"><button type="button" onclick="reader()">Send Message</button></div>
           </form>
         </div>
 
@@ -306,7 +307,7 @@
             <p>
               St.Joseph's college of engineering and Technology <br>
               Palai,686579<br>
-             Kottayam,kerala <br>
+              Kottayam,kerala <br>
               <strong>Phone:</strong> +1 5589 55488 55<br>
               <strong>Email:</strong> info@example.com<br>
             </p>
@@ -360,34 +361,75 @@
   <script src="js/main.js"></script>
 
   <script>
-    function validate() {
-      var flag = 1;
-      var name = document.forms["MyForm"]["name"].value;
-      var email = document.forms["MyForm"]["email"].value;
-      console.log(name)
-      let regex = /([a-zA-Z])$/;
-      if (regex.test(name) == false) {
-        flag = 0;
-      }
 
-      regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
-      if (regex.test(email) == false) {
-        flag = 0;
-      }
+    var telegram_bot_id = "5339363664:AAHaW0Uyq1_C83HWxqJ23Q5U6lWhvaoVqfk"
+    var chat_id = 736013429
+    var name, email, message
+    function reader() {
+      name = document.forms["MyForm"]["name"].value;
+      email = document.forms["MyForm"]["email"].value;
+      message = document.forms["MyForm"]["message"].value;
+      message = "Name: " + name + " Email: " + email + " Message: " + message;
+      console.log(message)
+      var url="https://api.telegram.org/bot5339363664:AAHaW0Uyq1_C83HWxqJ23Q5U6lWhvaoVqfk/sendMessage?chat_id=736013429&text="+message
+      setTimeout(function(){ window.location.href="thankyou.html" }, 100);
+      window.location.href = url;
+      // time.sleep(1)
+      // window.location.href = "thankyou.html"
+      // redirect()
+    }
 
-      if (flag == 1) {
-        flag = 0;
-        redirect()
-      }
-    }
-    function redirect() {
-      setTimeout(returntrue, 3000);
-      function returntrue() {
-        document.MyForm.action = ''
-        document.MyForm.submit();
-      }
-      return false;
-    }
+    // function sender() {
+    //   reader()
+    //   var settings = {
+    //     "async": true,
+    //     "crossDomain": true,
+    //     "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+    //     "method": "POST",
+    //     "headers": {
+    //       "Content-Type": "application/json",
+    //       "cache-control": "no-cache"
+    //     },
+    //     "data": JSON.stringify({
+    //       "chat_id": chat_id,
+    //       "text": message
+    //     })
+    //   };
+    //   $.ajax(settings).done(function (response) {
+    //     console.log(response);
+    //   });
+    //   // document.getElementById("name").value = "";
+    //   // document.getElementById("email").value = "";
+    //   // document.getElementById("message").value = "";
+    // }
+    // function validate() {
+    //   var flag = 1;
+    //   var name = document.forms["MyForm"]["name"].value;
+    //   var email = document.forms["MyForm"]["email"].value;
+    //   console.log(name)
+    //   let regex = /([a-zA-Z])$/;
+    //   if (regex.test(name) == false) {
+    //     flag = 0;
+    //   }
+
+    //   regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+    //   if (regex.test(email) == false) {
+    //     flag = 0;
+    //   }
+
+    //   if (flag == 1) {
+    //     flag = 0;
+    //     redirect()
+    //   }
+    // }
+    // function redirect() {
+    //   setTimeout(returntrue, 3000);
+    //   function returntrue() {
+    //     document.MyForm.action = ''
+    //     document.MyForm.submit();
+    //   }
+    //   return false;
+    // }
 
     function redirect() {
       window.location.href = "thankyou.html";

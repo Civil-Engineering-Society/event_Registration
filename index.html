@@ -27,7 +27,6 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
-
   <!-- =======================================================
     Theme Name: TheEvent
     Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
@@ -269,7 +268,9 @@
                 data-msg="Please write something for us" placeholder="Message"></textarea>
               <div class="validation"></div>
             </div>
-            <div class="text-center"><button type="button" onclick="reader()">Send Message</button></div>
+            <div class="text-center"><button type="button" onclick="reader()"
+                style="background-color: red; color: white; border-radius: 20px; width: 200px; height: 45px; border: none;">Send
+                Message</button></div>
           </form>
         </div>
 
@@ -369,74 +370,25 @@
       name = document.forms["MyForm"]["name"].value;
       email = document.forms["MyForm"]["email"].value;
       message = document.forms["MyForm"]["message"].value;
+      var flag=1
+      let regex = /([a-zA-Z])$/;
+      if (regex.test(name) == false) {
+        flag = 0;
+      }
+
+      regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+      if (regex.test(email) == false) {
+        flag = 0;
+      }
+
+      if(flag == 1) {
       message = "Name: " + name + " Email: " + email + " Message: " + message;
-      console.log(message)
-      var url="https://api.telegram.org/bot5339363664:AAHaW0Uyq1_C83HWxqJ23Q5U6lWhvaoVqfk/sendMessage?chat_id=-1001584979136&text="+message
-      // setTimeout(function(){ window.location.href="thankyou.html" }, 100);
-      // window.location.href = url;
-      // time.sleep(1)
-      // window.location.href = "thankyou.html"
-      // redirect()
+      var url = "https://api.telegram.org/bot5339363664:AAHaW0Uyq1_C83HWxqJ23Q5U6lWhvaoVqfk/sendMessage?chat_id=-1001584979136&text=" + message
       var request = new XMLHttpRequest();
       request.open("POST", url, false);
       request.send(null);
-      window.location.href="thankyou.html"
-    }
-
-    // function sender() {
-    //   reader()
-    //   var settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
-    //     "method": "POST",
-    //     "headers": {
-    //       "Content-Type": "application/json",
-    //       "cache-control": "no-cache"
-    //     },
-    //     "data": JSON.stringify({
-    //       "chat_id": chat_id,
-    //       "text": message
-    //     })
-    //   };
-    //   $.ajax(settings).done(function (response) {
-    //     console.log(response);
-    //   });
-    //   // document.getElementById("name").value = "";
-    //   // document.getElementById("email").value = "";
-    //   // document.getElementById("message").value = "";
-    // }
-    // function validate() {
-    //   var flag = 1;
-    //   var name = document.forms["MyForm"]["name"].value;
-    //   var email = document.forms["MyForm"]["email"].value;
-    //   console.log(name)
-    //   let regex = /([a-zA-Z])$/;
-    //   if (regex.test(name) == false) {
-    //     flag = 0;
-    //   }
-
-    //   regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
-    //   if (regex.test(email) == false) {
-    //     flag = 0;
-    //   }
-
-    //   if (flag == 1) {
-    //     flag = 0;
-    //     redirect()
-    //   }
-    // }
-    // function redirect() {
-    //   setTimeout(returntrue, 3000);
-    //   function returntrue() {
-    //     document.MyForm.action = ''
-    //     document.MyForm.submit();
-    //   }
-    //   return false;
-    // }
-
-    function redirect() {
-      window.location.href = "thankyou.html";
+      window.location.href = "thankyou.html"
+      }
     }
   </script>
 </body>

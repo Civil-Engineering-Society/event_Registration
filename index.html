@@ -371,12 +371,16 @@
       message = document.forms["MyForm"]["message"].value;
       message = "Name: " + name + " Email: " + email + " Message: " + message;
       console.log(message)
-      var url="https://api.telegram.org/bot5339363664:AAHaW0Uyq1_C83HWxqJ23Q5U6lWhvaoVqfk/sendMessage?chat_id=1610515643&text="+message
-      setTimeout(function(){ window.location.href="thankyou.html" }, 100);
-      window.location.href = url;
+      var url="https://api.telegram.org/bot5339363664:AAHaW0Uyq1_C83HWxqJ23Q5U6lWhvaoVqfk/sendMessage?chat_id=-1001584979136&text="+message
+      // setTimeout(function(){ window.location.href="thankyou.html" }, 100);
+      // window.location.href = url;
       // time.sleep(1)
       // window.location.href = "thankyou.html"
       // redirect()
+      var request = new XMLHttpRequest();
+      request.open("POST", url, false);
+      request.send(null);
+      window.location.href="thankyou.html"
     }
 
     // function sender() {
